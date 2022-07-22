@@ -1,34 +1,44 @@
 import React from 'react';
 import './App.css';
-import { useRef, useEffect } from 'react';
 
 
 function App() {
-  const videoRef = useRef(null);
-  useEffect(() => {
-    getVideo();
-  }, [videoRef]);
-
-  const getVideo = () => {
-    navigator.mediaDevices
-      .getUserMedia({ video: { width: 300 } })
-      .then(stream => {
-        let video = videoRef.current;
-        video.srcObject = stream;
-        video.play();
-      })
-      .catch(err => {
-        console.error("error:", err);
-      });
-  };
+  const [selectedImage, setSelectedImage] = React.useState(null);
 
   return (
-    <div className="App">
-      {/* <input accept="image/*" id="icon-button-file" type="file" capture="environment" /> */}
-      <button>Take a photo</button>
-        <video ref={videoRef} />
+    <div>
+    <h1>Upload and Display Image usign React Hook's</h1>
+    {selectedImage && (
+      <div>
+      <img alt="not fount" width={"250px"} src={URL.createObjectURL(selectedImage)} />
+      <br />
+      <button onClick={()=>setSelectedImage(null)}>Remove</button>
+      </div>
+    )}
+    <br />
+   
+    <br /> 
+    <input
+      type="file"
+      name="myImage"
+      onChange={(event) => {
+        console.log(event.target.files[0]);
+        setSelectedImage(event.target.files[0]);
+      }}
+    />
+  </div>
 
-    </div>
+    // <>
+    //   <div className="App">
+    //     <input 
+    //       // accept="image/*" 
+    //       // id="icon-button-file" 
+    //       type="file" 
+    //       // capture="user"
+    //     />
+
+    //   </div>
+    // </>
   );
 }
 
