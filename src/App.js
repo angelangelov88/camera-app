@@ -3,6 +3,7 @@ import './App.css';
 
 function App() {
   const [selectedImage, setSelectedImage] = React.useState(null);
+  // eslint-disable-next-line no-unused-vars
   const [imgUpload, setImgUpload] = React.useState(null);
 
   const handleRemove = () => {
@@ -10,7 +11,7 @@ function App() {
   }
 
   const handleUpload = (e) => {
-    console.log(e.target.files[0]);
+    // console.log(e.target.files[0]);
     setSelectedImage(e.target.files[0]);
     var file = e.target.files[0]
     // console.log(file)
@@ -19,10 +20,11 @@ function App() {
     reader.onload = () => {
       setImgUpload(reader.result)
     };
-    console.log(imgUpload);
     reader.onerror = function (error) {
       console.log('Error: ', error);
     }
+    console.log(file);
+
   }
 
   return (
