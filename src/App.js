@@ -38,6 +38,7 @@ function App() {
             src={URL.createObjectURL(selectedImage)} 
           />
           <br />
+          <p>here</p>
           <button onClick={handleRemove}>Change image</button>
         </div>
       )}
